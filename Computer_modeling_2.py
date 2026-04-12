@@ -3,11 +3,11 @@ import random
 
 
 print("Введите:")
-a, b = map(int, input("- границы:                      ").split())
-f    =      str(input("- подынтегральную функцию:      "))
-I    =      int(input("- известное значение интеграла: "))
+a, b = map(float, input("- пределы интегрирования:       ").split())
+f    =        str(input("- подынтегральную функцию:      "))
+I    =      float(input("- известное значение интеграла: "))
 
-n    =      int(input("- количество итераций:          "))
+n    =        int(input("- количество итераций:          "))
 
 
 
@@ -18,7 +18,7 @@ E = []
 for i in range(n):
     u.append(random.random())
     x.append(a + (b - a) * u[-1])
-    E.append(eval(f.replace("x", str(x[-1]))))
+    E.append(eval(f.replace("x", f"({str(x[-1])})")))
 
 
 
@@ -26,7 +26,7 @@ w = (b - a) * sum(E) / n
 
 S = 0
 for i in range(n):
-    S += (x[i] - w) ** 2
+    S += (E[i] - w) ** 2
 S = S / (n - 1)
 
 d = 1.96 * (S ** 0.5) / (n ** 0.5)
